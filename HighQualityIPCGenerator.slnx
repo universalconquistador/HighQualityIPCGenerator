@@ -1,9 +1,20 @@
 <Solution>
+  <Configurations>
+    <Platform Name="x64" />
+  </Configurations>
   <Folder Name="/Solution Items/">
     <File Path="README.md" />
   </Folder>
-  <Project Path="HighQualityIPCGenerator.Sample.API/HighQualityIPCGenerator.Sample.API.csproj" />
-  <Project Path="HighQualityIPCGenerator.Sample.ConsumerPlugin/HighQualityIPCGenerator.Sample.ConsumerPlugin.csproj" />
-  <Project Path="HighQualityIPCGenerator.Sample.ProviderPlugin/HighQualityIPCGenerator.Sample.ProviderPlugin.csproj" />
-  <Project Path="HighQualityIPCGenerator/HighQualityIPCGenerator.csproj" />
+  <Project Path="HighQualityIPCGenerator.Sample.API/HighQualityIPCGenerator.Sample.API.csproj" >
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="HighQualityIPCGenerator.Sample.ConsumerPlugin/HighQualityIPCGenerator.Sample.ConsumerPlugin.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="HighQualityIPCGenerator.Sample.ProviderPlugin/HighQualityIPCGenerator.Sample.ProviderPlugin.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="HighQualityIPCGenerator/HighQualityIPCGenerator.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
 </Solution>

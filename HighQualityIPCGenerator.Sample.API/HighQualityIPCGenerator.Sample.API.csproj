@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <AssemblyName>HQIPC.Sample.API</AssemblyName>
     <RootNamespace>HQIPC.Sample.API</RootNamespace>
+    <Platforms>x64</Platforms>
 
     <!-- This is a library, not a plugin, so don't try to package it -->
     <Use_DalamudPackager>false</Use_DalamudPackager>

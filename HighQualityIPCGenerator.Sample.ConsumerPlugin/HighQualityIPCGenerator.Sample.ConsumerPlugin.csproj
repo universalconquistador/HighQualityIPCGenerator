@@ -10,7 +10,8 @@
 
     <AssemblyName>HQIPC.Sample.ConsumerPlugin</AssemblyName>
     <RootNamespace>HQIPC.Sample.ConsumerPlugin</RootNamespace>
-  </PropertyGroup>
+    <Platforms>x64</Platforms>
+</PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HighQualityIPCGenerator.Sample.API\HighQualityIPCGenerator.Sample.API.csproj" />

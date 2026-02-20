@@ -9,7 +9,33 @@
     <AssemblyName>HQIPC</AssemblyName>
     <IsRoslynComponent>true</IsRoslynComponent>
     <EnforceExtendedAnalyzerRules>True</EnforceExtendedAnalyzerRules>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>UniversalConquistador</Authors>
+    <Title>HQIPC: High Quality IPC Generator for Dalamud</Title>
+    <Description>The High Quality IPC Generator is a C# source generator that lets developers create super easy API libraries for exposing their Dalamud plugins via the built-in IPC system.</Description>
+    <PackageProjectUrl>https://github.com/universalconquistador/HighQualityIPCGenerator</PackageProjectUrl>
+    <Copyright>Copyright (c) UniversalConquistador 2026</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/universalconquistador/HighQualityIPCGenerator.git</RepositoryUrl>
+    <PackageTags>FFXIV;Dalamud</PackageTags>
+    <IncludeSymbols>False</IncludeSymbols>
+    <SymbolPackageFormat>symbols.nupkg</SymbolPackageFormat>
+    <PackageLicenseExpression> AGPL-3.0-or-later</PackageLicenseExpression>
+    <Platforms>AnyCPU;x64</Platforms>
+    <Version>1.0.1.0</Version>
+    <FileVersion>$(Version)</FileVersion>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Bcl.HashCode" Version="6.0.0" PrivateAssets="all" />
