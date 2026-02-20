@@ -1,15 +1,40 @@
 # High Quality IPC Generator
 
-The High Quality IPC Generator is a C# source generator that lets developers create super easy API libraries for exposing their Dalamud plugins via the built-in IPC system.
+[![NuGet Badge](https://img.shields.io/nuget/v/HQIPC)](https://www.nuget.org/packages/HQIPC/)
 
-The input to the generator is an interface (you probably only need one; it can be split into multiple files via `partial` interface definitions), and the output is a class with super easy methods to register an implementation with Dalamud IPC or request an implementation from IPC.
+The High Quality IPC Generator is a C# source generator that lets developers create super easy API libraries for exposing their Dalamud FFXIV plugins via the built-in IPC system. It only handles automating the IPC registration boilerplate without prescribing anything beyond that, leaving you in complete control of your API.
+
+HQIPC lets you just write a regular C# `interface` for your API and add one single attribute. Then it takes care of generating the boilerplate for providing and consuming it via IPC! This has a number of advantages over other Dalamud IPC approaches:
+ - Only declare your API in one place! A single source of truth makes updating your IPC methods trivial without unnecessary toil, and ensures you don't accidentally mismatch anything.
+ - XML documentation for your users! Because your API is only declared in one place, XML documentation attached to its events and methods are easily visible when authoring the providing plugin and the consuming plugins.
+ - No manually specifying string IDs for IPC events and methods! A member's symbol name is the single source of truth for its IPC name.
+ - No per-method IPC boilerplate like individual attributes or classes.
+ - Consumers don't need to manually subscribe to individual events and methods. Consuming your API becomes a single line of joy!
+ - Lightweight and super simple! Basically zero overhead with no reflection.
+
+The input to the generator is an interface (it can be split into multiple files via `partial` interface definitions), and the output is a class with two super straightforward `static` methods to provide or consume the API via IPC.
+
+For example, HQIPC would take an interface, like this:
+```csharp
+[IpcInterface("DemoIPC")]
+interface IDemo { ... }
+```
+and produce two static functions that take care of all the Dalamud IPC concerns, like this:
+```csharp
+class Demo
+{
+    static IDisposable RegisterIpcProvider(IDemo implementation, IDalamudPluginInterface pluginInterface) { ... }
+    static IDemo CreateIpcClient(IDalamudPluginInterface pluginInterface) { ... }
+}
+```
 
 
 ## Usage
 
-### Define your API
+### 1) Define your API
 
-In an independent project, declare an interface for your API and give it the `[IpcInterface]` attribute. Here's what the relevant parts of the sample in `HighQualityIPCGenerator.Sample.API` look like:
+In an independent project, first add a NuGet reference to `HQAPI`.
+Then, declare an interface for your API and give it the `[IpcInterface]` attribute, including a string to namespace all the IPC identifiers with. Here's what the relevant parts of the sample in `HighQualityIPCGenerator.Sample.API` look like:
 
 ```csharp
 [IpcInterface(ipcNamespace: "HQIPCSample")]
@@ -26,7 +51,7 @@ public interface ISampleAPI
 Putting XML documentation on your API interface will let consumers automatically see it when they use your methods and events, so please consider it!
 
 
-### Provide from the source plugin
+### 2) Provide from the source plugin
 
 From the providing plugin, reference the API project and simply call its generated `RegisterIpcProvider(...)` function, supply the implementation of your interface and the Dalamud plugin interface, and that's it! One line, not counting the eventual `Dispose` when your plugin is shutting down.
 
@@ -36,15 +61,16 @@ Here's what that looks like in the `HighQualityIPCGenerator.Sample.ProviderPlugi
 // Call the generated `RegisterIpcProvider` function to make each event and function of your implementation available over Dalamud IPC
 IDisposable ipcProviderRegistration = HQIPC.Sample.API.SampleAPI.RegisterIpcProvider(_implementation, PluginInterface);
 
-// ...
+// (...)
 
-// ipcProviderRegistration.Dispose();
+// Dispose the registration to unregister your events and methods from Dalamud IPC
+ipcProviderRegistration.Dispose();
 ```
 
 
-### Consume from destination plugin(s)
+### 3) Consume from destination plugin(s)
 
-From the consuming plugin, reference the API project and simply call its generated `CreateIpcClient(...)` function, supplying the Dalamud plugin interface, use the returned API implementation, `Dispose` when done, and that's it! Two lines, max.
+From the consuming plugin, reference the API project and simply call its generated `CreateIpcClient(...)` function, supplying the plugin interface given by Dalamud. Then use the returned interface to invoke the API via IPC, `Dispose` it when done, and that's it! Two lines, max.
 
 Here's an example of what that looks like in the `HighQualityIPCGenerator.Sample.ConsumerPlugin` sample:
 
