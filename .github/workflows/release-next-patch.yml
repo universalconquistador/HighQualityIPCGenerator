@@ -3,7 +3,8 @@ name: Release Patch Version
 on:
   workflow_dispatch
 permissions:
-  contents: write
+  contents: write # For committing the new version number back to the repo
+  id-token: write # For NuGet Trusted Publishing
 
 jobs:
 
@@ -44,6 +45,15 @@ jobs:
       run: dotnet build --no-restore --configuration Release
       env:
         DALAMUD_HOME: /home/runner/dalamud-distrib
+
+    - name: NuGet login (OIDC → temp API key)
+      uses: NuGet/login@v1
+      id: login
+      with:
+        user: UniversalConquistador
+
+    - name: Publish to NuGet
+      run: dotnet nuget push ./HighQualityIPCGenerator/bin/x64/Release/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://nuget.org
 
     - name: Push versioning commit
       run: git push && git push --tags
