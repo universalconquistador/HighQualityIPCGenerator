@@ -37,6 +37,9 @@ jobs:
       env:
         DALAMUD_HOME: /home/runner/dalamud-distrib
 
+    - name: pwd test
+      run: pwd
+
     - name: Store artifacts
       uses: actions/upload-artifact@v4
       with:
