@@ -1,0 +1,19 @@
+﻿<Project Sdk="Dalamud.NET.Sdk/14.0.1">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- This is not a 'real' Dalamud plugin, so don't bother trying to package it -->
+    <Use_DalamudPackager>false</Use_DalamudPackager>
+    
+    <AssemblyName>HQIPC.Sample.ProviderPlugin</AssemblyName>
+    <RootNamespace>HQIPC.Sample.ProviderPlugin</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HighQualityIPCGenerator.Sample.API\HighQualityIPCGenerator.Sample.API.csproj" />
+  </ItemGroup>
+
+</Project>

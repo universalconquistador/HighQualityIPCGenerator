@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="HighQualityIPCGenerator.Sample.API/HighQualityIPCGenerator.Sample.API.csproj" />
+  <Project Path="HighQualityIPCGenerator.Sample.ConsumerPlugin/HighQualityIPCGenerator.Sample.ConsumerPlugin.csproj" />
+  <Project Path="HighQualityIPCGenerator.Sample.ProviderPlugin/HighQualityIPCGenerator.Sample.ProviderPlugin.csproj" />
+  <Project Path="HighQualityIPCGenerator/HighQualityIPCGenerator.csproj" />
+</Solution>

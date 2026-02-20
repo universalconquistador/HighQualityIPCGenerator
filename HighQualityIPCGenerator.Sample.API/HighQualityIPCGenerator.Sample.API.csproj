@@ -1,0 +1,18 @@
+﻿<Project Sdk="Dalamud.NET.Sdk/14.0.1">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>HQIPC.Sample.API</AssemblyName>
+    <RootNamespace>HQIPC.Sample.API</RootNamespace>
+
+    <!-- This is a library, not a plugin, so don't try to package it -->
+    <Use_DalamudPackager>false</Use_DalamudPackager>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../HighQualityIPCGenerator/HighQualityIPCGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+</Project>
