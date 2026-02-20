@@ -25,6 +25,9 @@ jobs:
     - name: Install .NET Version CLI
       run: dotnet tool install dotnet-version-cli
 
+    - name: Set Git commit author
+      run: git config user.name "Universal Conquistador (CI Job)" && git config user.name "universalconquistador@gmail.com"
+
     - name: Bump patch version and commit
       run: 'dotnet version -f HighQualityIPCGenerator/HighQualityIPCGenerator.csproj patch -m "CI: Bumps patch version for release $newVer."'
 
