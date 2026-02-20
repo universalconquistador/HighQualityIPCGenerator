@@ -1,4 +1,4 @@
-name: Release current main as next patch version
+name: Release Patch Version
 
 on:
   workflow_dispatch

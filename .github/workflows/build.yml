@@ -1,4 +1,4 @@
-name: Builder for HQIPC
+name: Build
 
 on:
   push:
