@@ -28,7 +28,7 @@ public class Generator : IIncrementalGenerator
     void GenerateSharedSource(IncrementalGeneratorPostInitializationContext context)
     {
         // Add the [IpcInterface(string ipcNamespace)] attribute
-        context.AddSource($"Shared", "namespace HQIPC \n{ \n    [System.AttributeUsage(System.AttributeTargets.Interface)] \n    public class IpcInterfaceAttribute : Attribute \n    { \n        public string IpcNamespace { get; set; } \n        public IpcInterfaceAttribute(string ipcNamespace) \n        { \n            IpcNamespace = ipcNamespace; \n        } \n    } \n}");
+        context.AddSource($"Shared", "namespace HQIPC \n{ \n    [System.AttributeUsage(System.AttributeTargets.Interface)] \n    public class IpcInterfaceAttribute : System.Attribute \n    { \n        public string IpcNamespace { get; set; } \n        public IpcInterfaceAttribute(string ipcNamespace) \n        { \n            IpcNamespace = ipcNamespace; \n        } \n    } \n}");
     }
 
     // Extract everything we need from the syntax & semantics so that we can generate the source files without them

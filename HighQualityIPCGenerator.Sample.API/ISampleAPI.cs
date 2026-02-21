@@ -19,7 +19,7 @@ public interface ISampleAPI
     // BAD: Dalamud events cannot have a return type.
     // Uncommenting this will result in the HQIPC01 error message and a build failure.
     //event Func<int, float> SampleEventReturnValue;
-
+    
     /// <summary>
     /// A sample function that accepts two int parameters and returns an int value.
     /// </summary>
