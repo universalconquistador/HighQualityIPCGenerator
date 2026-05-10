@@ -33,7 +33,7 @@ class Demo
 
 ### 1) Define your API
 
-In an independent project, first add a NuGet reference to `HQAPI`.
+In an independent project, first add a NuGet reference to `HQIPC`.
 Then, declare an interface for your API and give it the `[IpcInterface]` attribute, including a string to namespace all the IPC identifiers with. Here's what the relevant parts of the sample in `HighQualityIPCGenerator.Sample.API` look like:
 
 ```csharp
