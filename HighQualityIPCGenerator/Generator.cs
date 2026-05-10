@@ -121,7 +121,7 @@ public class Generator : IIncrementalGenerator
             sb.AppendLine($"public interface {job.InterfaceTypeName}Consumer : {job.InterfaceTypeName}, System.IDisposable");
             sb.AppendLine("{ }");
             sb.AppendLine();
-            sb.AppendLine($"public static class {nonInterfaceName}");
+            sb.AppendLine($"public static partial class {nonInterfaceName}");
             using (sb.BeginBraceScope())
             {
                 sb.AppendLine("private class Provider : System.IDisposable");
